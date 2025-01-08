@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vision Sphere - Expérience Virtuelle Immersive</title>
+    <!-- Bootstrap CSS -->
+    <link rel="icon" href="https://cdn.creazilla.com/cliparts/7828954/vr-logo-virtual-reality-logo-clipart-xl.png" type="image/x-icon">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+
+
+    <style>
+        ::-webkit-scrollbar {
+        display: none;
+    }
+        body {
+            background: radial-gradient(circle at top, #0a0f25, #030612);
+            color: #e0e0e0;
+            font-family: 'Roboto', sans-serif;
+            -ms-overflow-style: none; /* IE and Edge */
+        }
+        
+        .navbar {
+            background-color: rgba(21, 26, 48, 0.9);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        .navbar-nav .nav-link {
+        color: #fff;
+    }
+        .navbar-brand {
+            font-weight: bold;
+            color: #00bcd4;
+        }
+        .navbar-dark .nav-link {
+            color: #c7cde5;
+            transition: color 0.3s ease;
+        }
+        .navbar-dark .nav-link:hover {
+            color: #00bcd4;
+        }
+        header {
+            background-color: linear-gradient(to bottom, #0a0f25, #050710);
+            text-shadow: 0 2px 5px rgba(0, 0, 0, 0.7);
+            padding: 100px 0;
+        }
+        header h1 {
+            font-size: 3.5rem;
+            font-weight: bold;
+        }
+        header p {
+            font-size: 1.3rem;
+            margin-bottom: 1.5rem;
+        }
+        .btn-light {
+            color: #fff;
+            background-color: #00bcd4;
+            border: none;
+            box-shadow: 0 4px 10px rgba(0, 188, 212, 0.4);
+            transition: background-color 0.3s ease, box-shadow 0.3s ease;
+        }
+        .btn-light:hover {
+            background-color: #008ba3;
+            box-shadow: 0 6px 15px rgba(0, 139, 163, 0.5);
+        }
+        section {
+            padding: 5rem 0;
+        }
+        section h2 {
+            text-align: center;
+            color: #00bcd4;
+            margin-bottom: 3rem;
+            font-weight: bold;
+        }
+        .card {
+            background: linear-gradient(to bottom, #1b2436, #101522);
+            color: #fff;
+            border: none;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.5);
+        }
+        .progress-bar {
+            background-color: #00bcd4;
+            transition: width 1s ease;
+        }
+        footer {
+            background-color: #151a30;
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
+            color: #c7cde5;
+            padding: 2rem 0;
+        }
+        footer a {
+            color: #00bcd4;
+            transition: color 0.3s ease;
+        }
+        footer a:hover {
+            color: #008ba3;
+        }
+        .carousel-inner img {
+            height: 500px;
+            object-fit: cover;
+        }
+        .carousel-caption {
+            background: rgba(0, 0, 0, 0.7);
+            padding: 1rem;
+            border-radius: 10px;
+        }
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        .fade-in {
+            opacity: 0;
+            animation: fadeIn 1s forwards;
+        }
+        
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {
+                transform: translateY(0);
+            }
+            40% {
+                transform: translateY(-10px);
+            }
+            60% {
+                transform: translateY(-5px);
+            }
+        }
+    
+        .bounce-animation {
+            animation: bounce 2s infinite;
+        }
+    
+        .round-button {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background-color: white;
+            color: black;
+            border: none;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            cursor: pointer;
+            transition: transform 0.2s ease;
+        }
+    
+        .round-button:hover {
+            transform: scale(1.1);
+        }
+    
+
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg ">
+        <div class="container">
+            <a class="navbar-brand" href="#">Vision Sphere</a>
+            <button class="navbar-toggler " type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto ">
+                    <li class="nav-item"><a class="nav-link" href="#features">Caractéristiques</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#Perf">Performances</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#games">Nos jeux</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header class="text-white text-center py-5 position-relative">
+        <div class="container">
+            <h1 class="display-4">Découvrez la Réalité Virtuelle</h1>
+            <p class="lead">Une expérience immersive incomparable avec le NOVA Lens</p>
+            <img src="images/casque.png" alt="NOVA Lens" class="img-fluid mt-4" style="max-width: 500px;">
+            <a href="#" class="btn btn-light btn-lg mt-4">Acheter Maintenant</a>
+        </div>
+    
+        <a href="#features" class="position-absolute end-0 me-3 mb-3" style="top: 580px; right: 10px;">
+            <button class="round-button bounce-animation">
+                <i class="bi bi-arrow-down"></i>
+            </button>
+        </a>
+        
+        
+    </header>
+
+
+
+    <!-- Features Section -->
+    <section id="features" class="py-5">
+        <div class="container">
+            <h2 class="text-center mb-5">Caractéristiques Principales</h2>
+            <div class="row">
+                <div class="col-md-4 mb-4 fade-in">
+                    <div class="card h-100">
+                        <div class="card-body text-center">
+                            <i class="bi bi-display h1"></i>
+                            <h3 class="card-title">Résolution 4K</h3>
+                            <p class="card-text">Une qualité d'image exceptionnelle pour une immersion totale.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4 fade-in">
+                    <div class="card h-100">
+                        <div class="card-body text-center">
+                            <i class="bi bi-battery-full h1"></i>
+                            <h3 class="card-title">Autonomie</h3>
+                            <p class="card-text">Jusqu'à 5 heures d'utilisation continue.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4 fade-in">
+                    <div class="card h-100">
+                        <div class="card-body text-center">
+                            <i class="bi bi-controller h1"></i>
+                            <h3 class="card-title">Contrôleurs Touch</h3>
+                            <p class="card-text">Une précision et un confort optimaux.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+   <!-- Progress Section -->
+   <section id="Perf" class="py-5" >
+    <div class="container">
+        <h2 class="text-center mb-5">Performances</h2>
+        <div class="row">
+            <div class="col-md-6 mb-4">
+                <p>Résolution</p>
+                <div class="progress">
+                    <div class="progress-bar" role="progressbar" style="width: 0%;" data-width="90"></div>
+                </div>
+            </div>
+            <div class="col-md-6 mb-4">
+                <p>Confort</p>
+                <div class="progress">
+                    <div class="progress-bar" role="progressbar" style="width: 0%;" data-width="82"></div>
+                </div></div>
+                    <div class="col-md-6 mb-4">
+                        <p>Qualité Audio</p>
+                        <div class="progress">
+                            <div class="progress-bar" role="progressbar" style="width: 0%;" data-width="66"></div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 mb-4">
+                        <p>Autonomie</p>
+                        <div class="progress">
+                            <div class="progress-bar" role="progressbar" style="width: 0%;" data-width="75"></div>
+                        </div>
+                    </div>          
+        </div>
+    </div>
+</section>
+
+
+<!-- VR Games Carousel -->
+<section id="games"class="py-5  text-white">
+    <div class="container">
+        <h2 class="text-center mb-5">Plongez dans l'univers VR</h2>
+        <div id="vrGamesCarousel" class="carousel slide" data-bs-ride="carousel" data-bs-interval="3000">
+            <!-- Carousel Indicators -->
+            <div class="carousel-indicators">
+                <button type="button" data-bs-target="#vrGamesCarousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+                <button type="button" data-bs-target="#vrGamesCarousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                <button type="button" data-bs-target="#vrGamesCarousel" data-bs-slide-to="2" aria-label="Slide 3"></button>
+            </div>
+            <!-- Carousel Content -->
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <img src="images/game1.jpg" class="d-block w-100" alt="VR Game 1">
+                    <div class="carousel-caption d-none d-md-block">
+                        <h5>Évasion dans l'Espace</h5>
+                        <p>Explorez les confins de l'univers !</p>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <img src="images/game2.jpg" class="d-block w-100" alt="VR Game 2">
+                    <div class="carousel-caption d-none d-md-block">
+                        <h5>Maîtrise de l'assassinat</h5>
+                        <p>Devenez un maître dans l'art de l'assassinat !</p>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <img src="images/game3.jpg" class="d-block w-100" alt="VR Game 3">
+                    <div class="carousel-caption d-none d-md-block">
+                        <h5>Simulation de Course</h5>
+                        <p>Ressentez l'adrénaline des circuits !</p>
+                    </div>
+                </div>
+            </div>
+            <!-- Carousel Controls -->
+            <button class="carousel-control-prev" type="button" data-bs-target="#vrGamesCarousel" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Précédent</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#vrGamesCarousel" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Suivant</span>
+            </button>
+        </div>
+    </div>
+</section>
+
+<!-- Js pour le Carousel-->
+<script>
+    const vrGamesCarousel = document.querySelector('#vrGamesCarousel');
+    vrGamesCarousel.addEventListener('mouseover', () => {
+        const carouselInstance = bootstrap.Carousel.getInstance(vrGamesCarousel);
+        carouselInstance.pause();
+    });
+
+    vrGamesCarousel.addEventListener('mouseout', () => {
+        const carouselInstance = bootstrap.Carousel.getInstance(vrGamesCarousel);
+        carouselInstance.cycle();
+    });
+</script>
+
+    <!-- Footer -->
+    <footer class="text-center py-4">
+        <div class="container">
+            <div class="row justify-content-center">
+                <!-- Company Info -->
+                <div class="col-md-4 mb-4">
+                    <h5>NOVA Lens</h5>
+                    <p>Explorez de nouveaux horizons en réalité virtuelle avec notre casque innovant.</p>
+                    <div class="social-links">
+                        <a href="#" class="text-white me-3"><i class="bi bi-facebook"></i></a>
+                        <a href="#" class="text-white me-3"><i class="bi bi-twitter"></i></a>
+                        <a href="#" class="text-white me-3"><i class="bi bi-instagram"></i></a>
+                    </div>
+                </div>
+            </div>
+            <!-- Copyright -->
+            <div class="text-center pt-4 mt-4 border-top border-secondary">
+                <p class="text-muted mb-0">&copy; 2024 Vision Sphere. Tous droits réservés.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <!-- Animation Scripts -->
+    <script>
+        // Counter Animation
+        const counters = document.querySelectorAll('.count-up');
+        counters.forEach(counter => {
+            const target = +counter.getAttribute('data-target');
+            const increment = target / 200;
+            
+            const updateCounter = () => {
+                const count = +counter.innerText;
+                if(count < target) {
+                    counter.innerText = Math.ceil(count + increment);
+                    setTimeout(updateCounter, 1);
+                }
+            };
+            updateCounter();
+        });
+
+        // Progress Bar Animation
+        const progressBars = document.querySelectorAll('.progress-bar');
+        progressBars.forEach(bar => {
+            const width = bar.getAttribute('data-width');
+            bar.style.width = width + '%';
+        });
+
+        // Fade In Animation
+        const observerCallback = (entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        };
+        
+        const observer = new IntersectionObserver(observerCallback);
+        document.querySelectorAll('.fade-in').forEach(element => observer.observe(element));
+    
+    
+    
+    </script>
+</body>
+</html>
